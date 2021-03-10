@@ -9,7 +9,7 @@ const RandomPlanet = () => {
 
   useEffect(()=>{
     setIsLoaded(false);
-    const randomPlanetNumber = Math.floor(Math.random() * 60) + 1;
+    const randomPlanetNumber = Math.floor(Math.random() * 57) + 1;
     fetch(`https://swapi.dev/api/planets/${randomPlanetNumber}`)
     .then(res => {
       if(!res.ok) throw new Error('Ooopss... Something went wrong!');
