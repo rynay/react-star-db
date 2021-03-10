@@ -5,6 +5,10 @@
   padding: 1rem;
 }
 
+.person-details img {
+  max-width: 100%;
+}
+
 .person-details .person-image {
   width: 30%;
   height: 30%;

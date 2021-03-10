@@ -1,15 +1,29 @@
-import React, { Component } from 'react';
-
+import { useState } from 'react'
+import Spinner from '../spinner'
 import './person-details.css';
 
 const PersonDetails = (props) => {
-  const { id, name, gender, eyeColor, birthYear } = props.person
+  const { id, name, gender, eyeColor, birthYear } = props.person;
+  const [ path, setPath ] = useState() 
+  const [ isLoaded, setIsLoaded ] = useState(false);
+  
+  fetch(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`)
+  .then((res) => {
+    if(!res.ok) throw new Error();
+    setPath(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`);
+    setIsLoaded(true);
+  })
+  .catch((error) => {
+    console.error(error)
+  })
 
   return (
     <div className="person-details card">
-      <img className="person-image"
-        alt="person"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+      <div className="person-image">
+        { !isLoaded ? <Spinner /> : (<img
+          alt="person"
+          src={path} />)}
+      </div>
 
       <div className="card-body">
         <h4>{name}</h4>

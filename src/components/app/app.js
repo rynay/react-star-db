@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Spinner from '../spinner';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
@@ -8,15 +9,17 @@ import PersonDetails from '../person-details';
 import './app.css';
 
 const App = () => {
+  const [ isLoaded, setIsLoaded ] = useState(true); 
   const [ person, setPerson ] = useState({
     name: 'R2-D2',
-    gender: 'male',
-    birthYear: 43,
+    gender: 'n/a',
+    birthYear: '33BBY',
     eyeColor: 'red',
     id: 3,
   });
 
   const getPerson = (id) => {
+    setIsLoaded(false)
     fetch(`https://swapi.dev/api/people/${id}`)
     .then(res => {
       if(!res.ok) throw new Error();
@@ -31,6 +34,7 @@ const App = () => {
         eyeColor,
         id,
       })
+      setIsLoaded(true);
     })
   }
 
@@ -44,7 +48,8 @@ const App = () => {
           <ItemList handleClick={getPerson}/>
         </div>
         <div className="col-md-6">
-          <PersonDetails person={person}/>
+          { !isLoaded ? <Spinner /> : <PersonDetails person={person}/>}
+          
         </div>
       </div>
     </div>
