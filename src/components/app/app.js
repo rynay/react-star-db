@@ -7,21 +7,9 @@ import ItemList from '../item-list';
 import PersonDetails from '../person-details';
 import PlanetDetails from '../planet-details';
 import StarshipDetails from '../starship-details';
+import Row from '../row'
 
 import './app.css';
-
-const Row = ({ left, right }) => {
-  return (
-    <div className="row">
-        <div className="col-md-6">
-          { left }
-        </div>
-        <div className="col-md-6">
-          { right }
-        </div>
-    </div>
-  );
-}
 
 const App = () => {
   const [ isPersonLoaded, setIsPersonLoaded ] = useState(true); 

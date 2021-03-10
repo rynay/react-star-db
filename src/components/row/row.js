@@ -1,5 +1,5 @@
 const Row = ({ left, right }) => {
-  return ( 
+  return (
     <div className="row">
         <div className="col-md-6">
           { left }
@@ -7,7 +7,7 @@ const Row = ({ left, right }) => {
         <div className="col-md-6">
           { right }
         </div>
-      </div>
+    </div>
   );
 }
 
