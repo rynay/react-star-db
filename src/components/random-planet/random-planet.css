@@ -1,13 +1,15 @@
 .random-planet {
   display: flex;
-  padding: 1rem;
+  padding: 0;
 }
-
+.card{
+  border: 0;
+}
 .random-planet img {
   max-width: 100%;
 }
 
-.random-planet .planet-image {
+.random-planet .random-planet-image {
   overflow: hidden;
   width: 150px;
   height: 150px;
