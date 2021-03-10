@@ -1,6 +1,6 @@
 export default class SwapiService {
 
-  _apiBase = 'https://swapi.co/api';
+  _apiBase = 'https://swapi.dev/api';
 
   async getResource(url) {
     const res = await fetch(`${this._apiBase}${url}`);
@@ -9,7 +9,19 @@ export default class SwapiService {
       throw new Error(`Could not fetch ${url}` +
         `, received ${res.status}`)
     }
-    return await res.json();
+    return this._transformPlanet(await res.json());
+  }
+
+  _transformPlanet(planet){
+    const id = planet.url.match(/\/([0-9])\/$/)
+    const { name, population, rotation_period: rotationPeriod, diameter } = planet;
+    return {
+      name,
+      population,
+      rotationPeriod,
+      diameter,
+      id,
+    }
   }
 
   async getAllPeople() {
