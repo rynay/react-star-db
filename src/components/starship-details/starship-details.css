@@ -1,0 +1,31 @@
+.starship {
+  display: flex;
+  padding: 1rem;
+}
+
+.starship img {
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.starship .starship-image {
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+
+.starship .list-group {
+  margin: 1rem 0 0 1rem;
+}
+
+.starship .list-group-item {
+  padding: .25rem;
+}
+
+.starship .list-group-item .term {
+  margin-right: .5rem;
+}

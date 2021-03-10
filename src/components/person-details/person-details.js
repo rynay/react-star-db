@@ -3,7 +3,17 @@ import Spinner from '../spinner'
 import './person-details.css';
 
 const PersonDetails = (props) => {
-  const { id, name, gender, eyeColor, birthYear } = props.person;
+  let person;
+  if(!props.person){
+    person = {
+      name: 'R2-D2',
+      gender: 'n/a',
+      birth_year: '33BBY',
+      eye_color: 'red',
+      id: 3,
+    };
+  }
+  const { id, name, gender, eye_color: eyeColor, birth_year: birthYear } = props.person ? props.person : person ;
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
   
@@ -45,6 +55,5 @@ const PersonDetails = (props) => {
     </div>
   )
 }
-
 
 export default PersonDetails
