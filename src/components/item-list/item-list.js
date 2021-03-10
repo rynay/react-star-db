@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Spinner from '../spinner'
 import './item-list.css';
 
-const ItemList = () => {
+const ItemList = (props) => {
   const [ isLoaded, setIsLoaded ] = useState(false);
   const [ people, setPeople ] = useState(null);
 
@@ -12,12 +12,11 @@ const ItemList = () => {
       return res.json()
     })
     .then((data) => {
-      console.log(data.results)
       const newData = [...data.results].map(person => ({
         ...person,
-        id: person.url.match(/\/([0-9]+)\/$/),
+        id: person.url.match(/\/([0-9]+)\/$/)[1],
       }))
-      setPeople(newData)
+      setPeople(newData);
       setIsLoaded(true);
     })
   }, [])
@@ -26,7 +25,10 @@ const ItemList = () => {
       <ul className="item-list list-group">
       {!isLoaded ? <Spinner /> : people.map((person) => {
         return (
-        <li key={person.id} className="list-group-item">
+        <li  
+          key={person.id} 
+          className="list-group-item"
+          onClick={() => props.handleClick(person.id)}>
           {person.name}
         </li>)
       })}
