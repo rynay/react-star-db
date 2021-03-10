@@ -1,10 +1,17 @@
+import { useState } from 'react';
 
 const PlanetDetails = (props) => {
+  const [ path, setPath ] = useState('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg') 
+  
+  fetch(`https://starwars-visualguide.com/assets/img/planets/${props.planet.id}.jpg`)
+  .then((res) => {
+    if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/planets/${props.planet.id}.jpg`);
+  })
   return (
     <>
       <img className="planet-image"
         alt="planet"
-        src={`https://starwars-visualguide.com/assets/img/planets/${props.planet.id}.jpg`} />
+        src={path}/>
       <div>
         <h4>{props.planet.name}</h4>
         <ul className="list-group list-group-flush">
@@ -25,5 +32,5 @@ const PlanetDetails = (props) => {
     </>
   );
 }
- 
+
 export default PlanetDetails;
