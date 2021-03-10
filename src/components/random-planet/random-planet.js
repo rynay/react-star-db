@@ -5,13 +5,7 @@ import Spinner from '../spinner';
 
 const RandomPlanet = () => {
   const [ isLoaded, setIsLoaded ] =  useState(false);
-  const [ planet, setPlanet ] = useState({
-    name: 'unknown',
-    population: 'unknown',
-    rotationPeriod: 'unknown',
-    diameter: 'unknown',
-    id: 1,
-  });
+  const [ planet, setPlanet ] = useState(null);
 
   useEffect(()=>{
     setIsLoaded(false);
