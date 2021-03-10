@@ -12,7 +12,7 @@ const ItemList = (props) => {
       return res.json()
     })
     .then((data) => {
-      const newData = [...data.results].map(person => ({
+      const newData = data.results.slice(0, 5).map(person => ({
         ...person,
         id: person.url.match(/\/([0-9]+)\/$/)[1],
       }))
