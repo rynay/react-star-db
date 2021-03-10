@@ -9,16 +9,18 @@ const RandomPlanet = () => {
 
   useEffect(()=>{
     setIsLoaded(false);
-    const random = Math.floor(Math.random() * 8) + 2;
-    fetch(`https://swapi.dev/api/planets/${random}`)
+    const randomPlanetNumber = Math.floor(Math.random() * 10);
+    const randomPageNumber = Math.floor(Math.random() * 6) + 1;
+    fetch(`https://swapi.dev/api/planets/?page=${randomPageNumber}`)
     .then(res => {
       if(!res.ok) throw new Error('Ooopss... Something went wrong!');
 
       return res.json()
     })
     .then(data => {
-      const { name, rotation_period : rotationPeriod , population, diameter } = data;
-      const id = data.url.match(/\/([0-9])\/$/)[1];
+      const randomPlanet = data.results[randomPlanetNumber];
+      const { name, rotation_period : rotationPeriod , population, diameter } = randomPlanet;
+      const id = randomPlanet.url.match(/\/([0-9]+)\/$/)[1];
       setPlanet({
         name,
         rotationPeriod,
