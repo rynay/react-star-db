@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../spinner';
 import './starship-details.css'
 
@@ -18,16 +18,18 @@ const StarshipDetails = (props) => {
   }
   const { name, id, cost_in_credits: costInCredits, max_atmosphering_speed: maxAtmospheringSpeed, passengers } = props.starship ? props.starship: starship;
   
-  fetch(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`)
-  .then((res) => {
-    if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`);
-    if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
-    setIsLoaded(true);
-  })
-  .catch((error) => {
-    console.error(error)
-  })
-
+  useEffect(() => {
+    fetch(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`)
+    .then((res) => {
+      if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`);
+      if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
+      setIsLoaded(true);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
+  
   return (
     <>
       <div className="starship-image">

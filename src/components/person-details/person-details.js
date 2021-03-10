@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Spinner from '../spinner'
 import './person-details.css';
 
@@ -17,15 +17,17 @@ const PersonDetails = (props) => {
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
   
-  fetch(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`)
-  .then((res) => {
-    if(!res.ok) throw new Error();
-    setPath(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`);
-    setIsLoaded(true);
-  })
-  .catch((error) => {
-    console.error(error)
-  })
+  useEffect(() => {
+    fetch(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`)
+    .then((res) => {
+      if(!res.ok) throw new Error();
+      setPath(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`);
+      setIsLoaded(true);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
   return (
     <div className="person-details card">

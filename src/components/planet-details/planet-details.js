@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../spinner';
 
 const PlanetDetails = (props) => {
@@ -17,15 +17,17 @@ const PlanetDetails = (props) => {
   }
   const { name, population, rotation_period: rotationPeriod, diameter, id } = props.planet ? props.planet: planet;
   
-  fetch(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`)
-  .then((res) => {
-    if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`);
-    if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
-    setIsLoaded(true);
-  })
-  .catch((error) => {
-    console.error(error)
-  })
+  useEffect(() => {
+    fetch(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`)
+    .then((res) => {
+      if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`);
+      if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
+      setIsLoaded(true);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
 
   return (
