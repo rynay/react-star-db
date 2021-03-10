@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import Spinner from '../spinner';
 
 const PlanetDetails = (props) => {
-  const [ path, setPath ] = useState('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg') 
+  const [ path, setPath ] = useState() 
+  const [ isLoaded, setIsLoaded ] = useState(false);
   
   fetch(`https://starwars-visualguide.com/assets/img/planets/${props.planet.id}.jpg`)
   .then((res) => {
     if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/planets/${props.planet.id}.jpg`);
+    if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
+    setIsLoaded(true);
   })
+
   return (
     <>
-      <img className="planet-image"
-        alt="planet"
-        src={path}/>
+      <div className="planet-image">
+        { !isLoaded ? <Spinner /> : (
+          <img 
+          alt="planet"
+          src={path}/>
+        ) }
+      </div>
       <div>
         <h4>{props.planet.name}</h4>
         <ul className="list-group list-group-flush">

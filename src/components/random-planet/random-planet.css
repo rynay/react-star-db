@@ -3,7 +3,12 @@
   padding: 1rem;
 }
 
+.random-planet img {
+  max-width: 100%;
+}
+
 .random-planet .planet-image {
+  overflow: hidden;
   width: 150px;
   height: 150px;
   border-radius: 10px;
