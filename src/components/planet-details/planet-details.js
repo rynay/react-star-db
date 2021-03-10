@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Spinner from '../spinner';
+import './planet-details.css'
 
 const PlanetDetails = (props) => {
   const [ path, setPath ] = useState() 
@@ -31,7 +32,7 @@ const PlanetDetails = (props) => {
 
 
   return (
-    <>
+    <div className="planet-details card">
       <div className="planet-image">
         { !isLoaded ? <Spinner /> : (
           <img 
@@ -39,7 +40,7 @@ const PlanetDetails = (props) => {
           src={path}/>
         ) }
       </div>
-      <div>
+      <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
@@ -56,7 +57,7 @@ const PlanetDetails = (props) => {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

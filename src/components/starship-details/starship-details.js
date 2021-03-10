@@ -31,7 +31,7 @@ const StarshipDetails = (props) => {
   }, [id])
 
   return (
-    <>
+    <div className="starship-details card">
       <div className="starship-image">
         { !isLoaded ? <Spinner /> : (
           <img 
@@ -39,7 +39,7 @@ const StarshipDetails = (props) => {
           src={path}/>
         ) }
       </div>
-      <div>
+      <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
@@ -56,7 +56,7 @@ const StarshipDetails = (props) => {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

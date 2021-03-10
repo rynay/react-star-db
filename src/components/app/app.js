@@ -10,6 +10,19 @@ import StarshipDetails from '../starship-details';
 
 import './app.css';
 
+const Row = ({ left, right }) => {
+  return (
+    <div className="row">
+        <div className="col-md-6">
+          { left }
+        </div>
+        <div className="col-md-6">
+          { right }
+        </div>
+    </div>
+  );
+}
+
 const App = () => {
   const [ isPersonLoaded, setIsPersonLoaded ] = useState(true); 
   const [ isPlanetLoaded, setIsPlanetLoaded ] = useState(true); 
@@ -67,38 +80,18 @@ const App = () => {
       <Header />
       <RandomPlanet />
 
-      <div className="row">
-        <div className="col-md-6">
-          <ItemList category="people" handleClick={getItem}/>
-        </div>
-        <div className="col-md-6">
-          { !isPersonLoaded ? <Spinner /> : <PersonDetails person={person}/>}
-        </div>
-      </div>
-
-
-      <div className="row">
-        <div className="col-md-6">
-          <ItemList category="planets" handleClick={getItem}/>
-        </div>
-        <div className="col-md-6">
-          <div className="random-planet jumbotron rounded">
-            {!isPlanetLoaded ? <Spinner /> : <PlanetDetails planet={planet}/>}
-          </div>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-md-6">
-          <ItemList category="starships" handleClick={getItem}/>
-        </div>
-        <div className="col-md-6">
-          <div className="starship jumbotron rounded">
-            {!isStarshipLoaded ? <Spinner /> : <StarshipDetails starship={starship}/>}
-          </div>
-        </div>
-      </div>
-
+      <Row 
+        left={<ItemList category="people" handleClick={getItem}/>}
+        right={!isPersonLoaded ? <Spinner /> : <PersonDetails person={person}/>}
+      />
+      <Row
+        left={<ItemList category="planets" handleClick={getItem}/>}
+        right={!isPlanetLoaded ? <Spinner /> : <PlanetDetails planet={planet}/>}
+      />
+      <Row 
+        left={<ItemList category="starships" handleClick={getItem}/>}
+        right={!isStarshipLoaded ? <Spinner /> : <StarshipDetails starship={starship}/>}
+      />
     </div>
   );
 };
