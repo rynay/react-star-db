@@ -27,7 +27,7 @@ const PlanetDetails = (props) => {
     .catch((error) => {
       console.error(error)
     })
-  }, [])
+  }, [id])
 
 
   return (

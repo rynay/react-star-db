@@ -40,30 +40,26 @@ const App = () => {
     .then(data => {
       switch(category){
         case 'people':
-          setPerson({
-            ...data,
-            id: data.url.match(/\/([0-9]+)\/$/)[1] 
-          })
-          setIsPersonLoaded(true);
+          changeStates(data, setPerson, setIsPersonLoaded);
           break;
         case 'planets':
-          setPlanet({
-            ...data,
-            id: data.url.match(/\/([0-9]+)\/$/)[1] 
-          })
-          setIsPlanetLoaded(true);
+          changeStates(data, setPlanet, setIsPlanetLoaded);
           break;
         case 'starships':
-          setStarship({
-            ...data,
-            id: data.url.match(/\/([0-9]+)\/$/)[1] 
-          })
-          setIsStarshipLoaded(true);
+          changeStates(data, setStarship, setIsStarshipLoaded);
           break;
         default: 
           break;
       }
     })
+  }
+
+  const changeStates = (data, func, loaded) => {
+    func({
+      ...data,
+      id: data.url.match(/\/([0-9]+)\/$/)[1] 
+    })
+    loaded(true);
   }
 
   return (

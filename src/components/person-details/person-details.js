@@ -27,7 +27,7 @@ const PersonDetails = (props) => {
     .catch((error) => {
       console.error(error)
     })
-  }, [])
+  }, [id])
 
   return (
     <div className="person-details card">

@@ -28,8 +28,8 @@ const StarshipDetails = (props) => {
     .catch((error) => {
       console.error(error)
     })
-  }, [])
-  
+  }, [id])
+
   return (
     <>
       <div className="starship-image">
