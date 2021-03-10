@@ -1,22 +1,37 @@
-import React, { Component } from 'react';
-
+import { useState, useEffect } from 'react';
+import Spinner from '../spinner'
 import './item-list.css';
 
-export default class ItemList extends Component {
+const ItemList = () => {
+  const [ isLoaded, setIsLoaded ] = useState(false);
+  const [ people, setPeople ] = useState(null);
 
-  render() {
+  useEffect(() => {
+    fetch('https://swapi.dev/api/people')
+    .then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      console.log(data.results)
+      const newData = [...data.results].map(person => ({
+        ...person,
+        id: person.url.match(/\/([0-9]+)\/$/),
+      }))
+      setPeople(newData)
+      setIsLoaded(true);
+    })
+  }, [])
+
     return (
       <ul className="item-list list-group">
-        <li className="list-group-item">
-          Luke Skywalker
-        </li>
-        <li className="list-group-item">
-          Darth Vader
-        </li>
-        <li className="list-group-item">
-          R2-D2
-        </li>
+      {!isLoaded ? <Spinner /> : people.map((person) => {
+        return (
+        <li key={person.id} className="list-group-item">
+          {person.name}
+        </li>)
+      })}
       </ul>
     );
-  }
 }
+
+export default ItemList;

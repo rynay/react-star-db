@@ -10,7 +10,7 @@ const RandomPlanet = () => {
   useEffect(()=>{
     setIsLoaded(false);
     const interval = setInterval(() => {
-      const randomPlanetNumber = Math.floor(Math.random() * 57) + 1;
+      const randomPlanetNumber = Math.floor(Math.random() * 18) + 2;
       fetch(`https://swapi.dev/api/planets/${randomPlanetNumber}`)
       .then(res => {
         if(!res.ok) throw new Error('Ooopss... Something went wrong!');
@@ -36,7 +36,7 @@ const RandomPlanet = () => {
       .finally(() => {
         setIsLoaded(true);
       })
-    }, 5000)
+    }, 3500)
 
     return () => { clearInterval(interval) }
   }, [])
