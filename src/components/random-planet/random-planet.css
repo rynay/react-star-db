@@ -2,29 +2,6 @@
   display: flex;
   padding: 0;
 }
-.card{
+.card {
   border: 0;
-}
-.random-planet img {
-  max-width: 100%;
-}
-
-.random-planet .random-planet-image {
-  overflow: hidden;
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  margin-right: 1rem;
-}
-
-.random-planet .list-group {
-  margin: 1rem 0 0 1rem;
-}
-
-.random-planet .list-group-item {
-  padding: .25rem;
-}
-
-.random-planet .list-group-item .term {
-  margin-right: .5rem;
 }
