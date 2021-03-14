@@ -62,10 +62,14 @@ export default class SwapiService {
     const { 
       name, 
       cost_in_credits: costInCredits,
+      max_atmosphering_speed: maxAtmospheringSpeed,
+      max_passengers: maxPassengers,
      } = starship;
     return {
       name,
       costInCredits,
+      maxAtmospheringSpeed,
+      maxPassengers,
       id,
     }
   }
