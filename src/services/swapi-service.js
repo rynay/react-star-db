@@ -47,7 +47,7 @@ export default class SwapiService {
           name: item.name,
           costInCredits: item.cost_in_credits,
           maxAtmospheringSpeed: item.max_atmosphering_speed,
-          maxPassengers: item.max_passengers,
+          maxPassengers: item.passengers,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }
       default: 

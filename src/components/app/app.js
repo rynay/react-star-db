@@ -38,7 +38,6 @@ const App = () => {
     }
     swapiService.getItem(id, category)
     .then(data => {
-      console.log(data)
       switch(category){
         case 'people':
           changeStates(data, setPerson, setIsPersonLoaded);

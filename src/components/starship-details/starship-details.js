@@ -6,17 +6,7 @@ const StarshipDetails = (props) => {
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
 
-  let starship;
-  if(!props.starship){
-    starship = {
-      name: 'Millennium Falcon',
-      cost_in_credits: 100000,
-      max_atmosphering_speed: 1050,
-      passengers: 6,
-      id: 10,
-    };
-  }
-  const { name, id, cost_in_credits: costInCredits, max_atmosphering_speed: maxAtmospheringSpeed, passengers } = props.starship ? props.starship: starship;
+  const { name, id, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.starship;
   
   useEffect(() => {
     fetch(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`)
@@ -52,12 +42,22 @@ const StarshipDetails = (props) => {
           </li>
           <li className="list-group-item">
             <span className="term">Max passengers</span>
-            <span>{passengers}</span>
+            <span>{maxPassengers}</span>
           </li>
         </ul>
       </div>
     </div>
   );
+}
+
+StarshipDetails.defaultProps = {
+  starship: {
+    name: 'Millennium Falcon',
+    costInCredits: 100000,
+    maxAtmospheringSpeed: 1050,
+    maxPassengers: 6,
+    id: 10,
+  }
 }
 
 export default StarshipDetails;
