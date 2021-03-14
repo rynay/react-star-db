@@ -8,6 +8,7 @@ import PersonDetails from '../person-details';
 import PlanetDetails from '../planet-details';
 import StarshipDetails from '../starship-details';
 import Row from '../row'
+import SwapiService from '../../services/swapi-service';
 
 import './app.css';
 
@@ -18,6 +19,8 @@ const App = () => {
   const [ person, setPerson ] = useState();
   const [ planet, setPlanet ] = useState();
   const [ starship, setStarship ] = useState();
+
+  const swapiService = new SwapiService();
 
   const getItem = (id, category) => {
     switch(category){
@@ -30,15 +33,12 @@ const App = () => {
       case 'starships':
         setIsStarshipLoaded(false);
         break;
-      default: 
+      default:
         break;
     }
-    fetch(`https://swapi.dev/api/${category}/${id}`)
-    .then(res => {
-      if(!res.ok) throw new Error();
-      return res.json()
-    })
+    swapiService.getItem(id, category)
     .then(data => {
+      console.log(data)
       switch(category){
         case 'people':
           changeStates(data, setPerson, setIsPersonLoaded);
@@ -54,12 +54,8 @@ const App = () => {
       }
     })
   }
-
   const changeStates = (data, func, loaded) => {
-    func({
-      ...data,
-      id: data.url.match(/\/([0-9]+)\/$/)[1] 
-    })
+    func({...data})
     loaded(true);
   }
 

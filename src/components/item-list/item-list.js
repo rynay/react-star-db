@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react';
 import Spinner from '../spinner'
 import './item-list.css';
+import SwapiService from '../../services/swapi-service'
 
 const ItemList = (props) => {
   const [ isLoaded, setIsLoaded ] = useState(false);
   const [ items, setItems ] = useState(null);
 
+  const swapiService = new SwapiService();
+
   useEffect(() => {
-    fetch(`https://swapi.dev/api/${props.category}`)
-    .then((res) => {
-      return res.json()
-    })
-    .then((data) => {
-      const newData = data.results.slice(0, 5).map(item => ({
-        ...item,
-        id: item.url.match(/\/([0-9]+)\/$/)[1],
-      }))
-      setItems(newData);
+    swapiService.getAll(props.category)
+    .then((data) =>{
+      setItems(data);
       setIsLoaded(true);
     })
   }, [])
-
     return (
       <ul className="item-list list-group">
       {!isLoaded ? <Spinner /> : items.map((item) => {
@@ -29,7 +24,7 @@ const ItemList = (props) => {
           key={item.id} 
           className="list-group-item"
           onClick={() => props.handleClick(item.id, props.category)}>
-          {item.name} ({ item.diameter || item.cost_in_credits || item.birth_year })
+          {item.name} ({ item.diameter || item.costInCredits || item.birthYear})
         </li>)
       })}
       </ul>

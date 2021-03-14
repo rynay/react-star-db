@@ -34,7 +34,7 @@ const PersonDetails = (props) => {
       <div className="person-image">
         { !isLoaded ? <Spinner /> : (<img
           alt="person"
-          src={path} />)}
+          src={ path } />)}
       </div>
 
       <div className="card-body">
