@@ -65,15 +65,15 @@ const App = () => {
 
       <Row 
         left={<ItemList category="people" handleClick={getItem}/>}
-        right={!isPersonLoaded ? <Spinner /> : <PersonDetails person={person}/>}
+        right={!isPersonLoaded ? <Spinner /> : <PersonDetails category="people" item={person}/>}
       />
       <Row
         left={<ItemList category="planets" handleClick={getItem}/>}
-        right={!isPlanetLoaded ? <Spinner /> : <PlanetDetails planet={planet}/>}
+        right={!isPlanetLoaded ? <Spinner /> : <PlanetDetails category="planets" item={planet}/>}
       />
       <Row 
         left={<ItemList category="starships" handleClick={getItem}/>}
-        right={!isStarshipLoaded ? <Spinner /> : <StarshipDetails starship={starship}/>}
+        right={!isStarshipLoaded ? <Spinner /> : <StarshipDetails category="starships" item={starship}/>}
       />
     </div>
   );

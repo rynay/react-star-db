@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
 import Spinner from '../spinner';
-import './starship-details.css'
+import './starship-details.css';
+import SwapiService from '../../services/swapi-service';
+
+// const withImage = (props) => (props.) 
 
 const StarshipDetails = (props) => {
+  const swapiService = new SwapiService();
+
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
 
-  const { name, id, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.starship;
+  const { name, id, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.item;
   
   useEffect(() => {
-    fetch(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`)
-    .then((res) => {
-      if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`);
-      if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
-      setIsLoaded(true);
-    })
-    .catch((error) => {
-      console.error(error)
+    swapiService.getImage(id, props.category)
+    .then((path) => {
+      setPath(path);
+      setIsLoaded(true)
     })
   }, [id])
 
@@ -51,7 +52,7 @@ const StarshipDetails = (props) => {
 }
 
 StarshipDetails.defaultProps = {
-  starship: {
+  item: {
     name: 'Millennium Falcon',
     costInCredits: 100000,
     maxAtmospheringSpeed: 1050,

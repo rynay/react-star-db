@@ -23,6 +23,16 @@ export default class SwapiService {
     return this._transform(item, category);
   }
 
+  getImage = async (id, category) => {
+    if(category === 'people'){
+      category = 'characters';
+    }
+
+    const res = await fetch(`https://starwars-visualguide.com/assets/img/${category}/${id}.jpg`);
+    if(res.ok) return (`https://starwars-visualguide.com/assets/img/${category}/${id}.jpg`);
+    if(!res.ok) return ('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
+  }
+
   _transform(item, category){
 
     switch(category){

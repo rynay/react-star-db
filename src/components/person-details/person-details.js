@@ -3,7 +3,7 @@ import Spinner from '../spinner'
 import './person-details.css';
 
 const PersonDetails = (props) => {
-  const { id, name, gender, eyeColor, birthYear } = props.person
+  const { id, name, gender, eyeColor, birthYear } = props.item;
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
   
@@ -49,7 +49,7 @@ const PersonDetails = (props) => {
 }
 
 PersonDetails.defaultProps = {
-    person: {
+    item: {
       name: 'R2-D2',
       gender: 'n/a',
       birthYear: '33BBY',
