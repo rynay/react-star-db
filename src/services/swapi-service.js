@@ -24,6 +24,9 @@ export default class SwapiService {
   }
 
   getImage = async (id, category) => {
+    if(!id || !category){
+      return ('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
+    }
     if(category === 'people'){
       category = 'characters';
     }

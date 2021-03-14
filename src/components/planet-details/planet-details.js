@@ -1,33 +1,16 @@
-import { useEffect, useState } from 'react';
+import { withImage } from '../hoc'
 import Spinner from '../spinner';
 import './planet-details.css'
 
 const PlanetDetails = (props) => {
-  const [ path, setPath ] = useState() 
-  const [ isLoaded, setIsLoaded ] = useState(false);
-
-  const { name, population, rotationPeriod, diameter, id } = props.item;
-  
-  useEffect(() => {
-    fetch(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`)
-    .then((res) => {
-      if(res.ok) setPath(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`);
-      if(!res.ok) setPath('https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg');
-      setIsLoaded(true);
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-  }, [id])
-
-
+  const { name, population, rotationPeriod, diameter} = props.item;
   return (
     <div className="planet-details card">
       <div className="planet-image">
-        { !isLoaded ? <Spinner /> : (
+        { !props.isLoaded ? <Spinner /> : (
           <img 
           alt="planet"
-          src={path}/>
+          src={props.path}/>
         ) }
       </div>
       <div className="card-body">
@@ -61,4 +44,4 @@ PlanetDetails.defaultProps = {
   }
 }
 
-export default PlanetDetails;
+export default withImage(PlanetDetails);
