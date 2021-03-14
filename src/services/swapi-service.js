@@ -58,9 +58,9 @@ export default class SwapiService {
       case 'starships':
         return {
           name: item.name,
-          costInCredits: item.cost_in_credits,
-          maxAtmospheringSpeed: item.max_atmosphering_speed,
-          maxPassengers: item.passengers,
+          cost_in_credits: item.cost_in_credits,
+          max_atmosphering_speed: item.max_atmosphering_speed,
+          passengers: item.passengers,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }
       default: 

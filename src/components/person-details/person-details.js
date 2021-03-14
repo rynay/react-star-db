@@ -1,30 +1,16 @@
-import { useEffect, useState } from 'react'
+import { withImage } from '../hoc'
 import Spinner from '../spinner'
 import './person-details.css';
 
 const PersonDetails = (props) => {
-  const { id, name, gender, eyeColor, birthYear } = props.item;
-  const [ path, setPath ] = useState() 
-  const [ isLoaded, setIsLoaded ] = useState(false);
-  
-  useEffect(() => {
-    fetch(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`)
-    .then((res) => {
-      if(!res.ok) throw new Error();
-      setPath(`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`);
-      setIsLoaded(true);
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-  }, [id])
+  const { name, gender, eyeColor, birthYear } = props.item;
 
   return (
     <div className="person-details card">
       <div className="person-image">
-        { !isLoaded ? <Spinner /> : (<img
+        { !props.isLoaded ? <Spinner /> : (<img
           alt="person"
-          src={ path } />)}
+          src={ props.path } />)}
       </div>
 
       <div className="card-body">
@@ -58,4 +44,4 @@ PersonDetails.defaultProps = {
     }
 }
 
-export default PersonDetails
+export default withImage(PersonDetails)

@@ -3,46 +3,44 @@ import './starship-details.css';
 import { withImage } from '../hoc'
 
 const StarshipDetails = (props) => {
-  const { name, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.item;
+  if(!props.item){
+    return (
+      <p>Please choose an object</p>
+    )
+  }
+  
+  const { name } = props.item;
+
+  const toCapitalize = (word) => word[0].toUpperCase() + word.slice(1);
+  const records = Object.entries(props.item).map((data, idx) => {
+    const [ key, value ] = data;
+    if (key !== 'name' && key !== 'id'){
+      return (
+      <li key={idx} className="list-group-item">
+        <span className="term">{ key.split('_').map(word => toCapitalize(word)).join(' ') } : </span>
+        <span>{ value }</span>
+      </li>
+    )}
+  })
 
   return (
-    <div className="starship-details card">
-      <div className="starship-image">
+    <div className="item-details card">
+      <div className="item-image">
         { !props.isLoaded ? <Spinner /> : (
           <img 
-          alt="starship"
+          alt="item"
           src={props.path}/>
         ) }
       </div>
       <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Cost in credits</span>
-            <span>{costInCredits}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Max atmosphering speed</span>
-            <span>{maxAtmospheringSpeed}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Max passengers</span>
-            <span>{maxPassengers}</span>
-          </li>
+          { records }
         </ul>
       </div>
     </div>
   );
 }
 
-StarshipDetails.defaultProps = {
-  item: {
-    name: 'Millennium Falcon',
-    costInCredits: 100000,
-    maxAtmospheringSpeed: 1050,
-    maxPassengers: 6,
-    id: 10,
-  }
-}
 
 export default withImage(StarshipDetails);
