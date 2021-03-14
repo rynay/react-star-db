@@ -1,33 +1,17 @@
-import { useEffect, useState } from 'react';
 import Spinner from '../spinner';
 import './starship-details.css';
-import SwapiService from '../../services/swapi-service';
-
-// const withImage = (props) => (props.) 
+import { withImage } from '../hoc'
 
 const StarshipDetails = (props) => {
-  const swapiService = new SwapiService();
-
-  const [ path, setPath ] = useState() 
-  const [ isLoaded, setIsLoaded ] = useState(false);
-
-  const { name, id, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.item;
-  
-  useEffect(() => {
-    swapiService.getImage(id, props.category)
-    .then((path) => {
-      setPath(path);
-      setIsLoaded(true)
-    })
-  }, [id])
+  const { name, costInCredits, maxAtmospheringSpeed, maxPassengers } = props.item;
 
   return (
     <div className="starship-details card">
       <div className="starship-image">
-        { !isLoaded ? <Spinner /> : (
+        { !props.isLoaded ? <Spinner /> : (
           <img 
           alt="starship"
-          src={path}/>
+          src={props.path}/>
         ) }
       </div>
       <div className="card-body">
@@ -61,4 +45,4 @@ StarshipDetails.defaultProps = {
   }
 }
 
-export default StarshipDetails;
+export default withImage(StarshipDetails);
