@@ -6,17 +6,7 @@ const PlanetDetails = (props) => {
   const [ path, setPath ] = useState() 
   const [ isLoaded, setIsLoaded ] = useState(false);
 
-  let planet;
-  if(!props.planet){
-    planet = {
-      name: 'Alderaan',
-      population: '2000000000',
-      rotation_period: '24',
-      diameter: '12500',
-      id: 2,
-    };
-  }
-  const { name, population, rotation_period: rotationPeriod, diameter, id } = props.planet ? props.planet: planet;
+  const { name, population, rotationPeriod, diameter, id } = props.planet;
   
   useEffect(() => {
     fetch(`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`)
@@ -59,6 +49,16 @@ const PlanetDetails = (props) => {
       </div>
     </div>
   );
+}
+
+PlanetDetails.defaultProps = {
+  planet: {
+    name: 'Alderaan',
+    population: '2000000000',
+    rotationPeriod: '24',
+    diameter: '12500',
+    id: 2,
+  }
 }
 
 export default PlanetDetails;

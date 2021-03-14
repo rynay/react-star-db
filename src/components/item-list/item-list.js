@@ -16,6 +16,7 @@ const ItemList = (props) => {
       setIsLoaded(true);
     })
   }, [])
+  
     return (
       <ul className="item-list list-group">
       {!isLoaded ? <Spinner /> : items.map((item) => {

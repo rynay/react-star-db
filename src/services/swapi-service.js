@@ -19,11 +19,12 @@ export default class SwapiService {
   }
 
   getItem = async (id, category) => {
-    const item = await this.getResource(`/${category}/${id}`);
+    const item = await this.getResource(`/${category}/${id}/`);
     return this._transform(item, category);
   }
 
   _transform(item, category){
+
     switch(category){
       case 'people':
         return {
@@ -36,17 +37,17 @@ export default class SwapiService {
       case 'planets':
         return {
           name: item.name,
-          costInCredits: item.cost_in_credits,
-          maxAtmospheringSpeed: item.max_atmosphering_speed,
-          maxPassengers: item.max_passengers,
+          population: item.population,
+          rotationPeriod: item.rotation_period,
+          diameter: item.diameter,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }
       case 'starships':
         return {
           name: item.name,
-          population: item.population,
-          rotationPeriod: item.rotation_period,
-          diameter: item.diameter,
+          costInCredits: item.cost_in_credits,
+          maxAtmospheringSpeed: item.max_atmosphering_speed,
+          maxPassengers: item.max_passengers,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }
       default: 
