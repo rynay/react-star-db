@@ -20,6 +20,9 @@ export function withImage(WrappedComponent) {
           this.setState({ path: path, isLoaded: true})
         })
     }
+    componentWillUnmount(){
+      this.setState({ path: null, isLoaded: false })
+    }
 
     render() {
       return <WrappedComponent path={this.state.path} isLoaded={this.state.isLoaded} {...this.props} />;

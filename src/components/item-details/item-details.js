@@ -1,14 +1,13 @@
 import Spinner from '../spinner';
-import './starship-details.css';
+import './item-details.css';
 import { withImage } from '../hoc'
 
-const StarshipDetails = (props) => {
+const ItemDetails = (props) => {
   if(!props.item){
     return (
       <p>Please choose an object</p>
     )
   }
-  
   const { name } = props.item;
 
   const toCapitalize = (word) => word[0].toUpperCase() + word.slice(1);
@@ -43,4 +42,4 @@ const StarshipDetails = (props) => {
 }
 
 
-export default withImage(StarshipDetails);
+export default withImage(ItemDetails);

@@ -1,6 +1,13 @@
-.random-planet {
+#random-planet {
   display: flex;
   padding: 0;
+}
+#random-planet .item-image {
+  height: 17rem;
+  width: 17rem;
+}
+#random-planet .item-image img {
+  width: 100%;
 }
 .card {
   border: 0;

@@ -1,51 +1,35 @@
 import './random-planet.css';
 import { useEffect, useState } from 'react';
-import PlanetDetails from '../planet-details'
-import Spinner from '../spinner';
+import ItemDetails from '../item-details';
+import SwapiService from '../../services/swapi-service'
 
-const RandomPlanet = () => {
-  const [ isLoaded, setIsLoaded ] =  useState(false);
-  const [ planet, setPlanet ] = useState(null);
+const RandomPlanet = (props) => {
+  const swapiService = new SwapiService();
+  const [ planet, setPlanet ] = useState({
+    name: "Coruscant",
+    rotation_period: "24",
+    diameter: "12240",
+    population: "1000000000000",
+    id: 9,
+  });
 
   useEffect(()=>{
-    setIsLoaded(false);
     const interval = setInterval(() => {
       const randomPlanetNumber = Math.floor(Math.random() * 18) + 2;
-      fetch(`https://swapi.dev/api/planets/${randomPlanetNumber}`)
-      .then(res => {
-        if(!res.ok) throw new Error('Ooopss... Something went wrong!');
-
-        return res.json()
-      })
-      .then(data => {
-        const randomPlanet = data;
-        const { name, rotation_period : rotationPeriod , population, diameter } = randomPlanet;
-        const id = randomPlanet.url.match(/\/([0-9]+)\/$/)[1];
-        setPlanet({
-          name,
-          rotationPeriod,
-          population,
-          diameter,
-          id,
-        });
-        setIsLoaded(true);
-      })
-      .catch((err) => {
-        console.error(err.message);
-      })
-      .finally(() => {
-        setIsLoaded(true);
+      swapiService.getItem(randomPlanetNumber, props.category)
+      .then((item) => {
+        setPlanet(item);
       })
     }, 3500)
 
-    return () => { clearInterval(interval) }
-  }, [])
+    return () => { 
+      clearInterval(interval)
+    }
+  }, [planet])
 
   return (
-    <div className="random-planet jumbotron rounded">
-      {!isLoaded ? <Spinner /> : (
-        <PlanetDetails planet={planet}/>
-      )}
+    <div id="random-planet" className="random-planet jumbotron rounded card">
+      <ItemDetails category="planets" item={planet}/>
     </div>
   );
   

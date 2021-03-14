@@ -4,9 +4,7 @@ import Spinner from '../spinner';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
-import PlanetDetails from '../planet-details';
-import StarshipDetails from '../starship-details';
+import ItemDetails from '../item-details';
 import Row from '../row'
 import SwapiService from '../../services/swapi-service';
 
@@ -61,19 +59,19 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <RandomPlanet />
+      <RandomPlanet category="planets"/>
 
       <Row 
         left={<ItemList category="people" handleClick={getItem}/>}
-        right={!isPersonLoaded ? <Spinner /> : <PersonDetails category="people" item={person}/>}
+        right={!isPersonLoaded ? <Spinner /> : <ItemDetails category="people" item={person}/>}
       />
       <Row
         left={<ItemList category="planets" handleClick={getItem}/>}
-        right={!isPlanetLoaded ? <Spinner /> : <PlanetDetails category="planets" item={planet}/>}
+        right={!isPlanetLoaded ? <Spinner /> : <ItemDetails category="planets" item={planet}/>}
       />
       <Row 
         left={<ItemList category="starships" handleClick={getItem}/>}
-        right={!isStarshipLoaded ? <Spinner /> : <StarshipDetails category="starships" item={starship}/>}
+        right={!isStarshipLoaded ? <Spinner /> : <ItemDetails category="starships" item={starship}/>}
       />
     </div>
   );

@@ -43,15 +43,15 @@ export default class SwapiService {
         return {
           name: item.name,
           gender: item.gender,
-          eyeColor: item.eye_color,
-          birthYear: item.birth_year,
+          eye_color: item.eye_color,
+          birth_year: item.birth_year,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }
       case 'planets':
         return {
           name: item.name,
           population: item.population,
-          rotationPeriod: item.rotation_period,
+          rotation_period: item.rotation_period,
           diameter: item.diameter,
           id: item.url.match(/\/([0-9]+)\/$/)[1],
         }

@@ -25,7 +25,7 @@ const ItemList = (props) => {
           key={item.id} 
           className="list-group-item"
           onClick={() => props.handleClick(item.id, props.category)}>
-          {item.name} ({ item.diameter || item.costInCredits || item.birthYear})
+          {item.name} ({ item.diameter || item.cost_in_credits || item.birth_year})
         </li>)
       })}
       </ul>
