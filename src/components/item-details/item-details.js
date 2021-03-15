@@ -9,9 +9,10 @@ const ItemDetails = (props) => {
   const { name } = props.item;
 
   const toCapitalize = (word) => word[0].toUpperCase() + word.slice(1);
-  const records = Object.entries(props.item).map((data, idx) => {
-    const [key, value] = data;
-    if (key !== 'name' && key !== 'id') {
+  const records = Object.entries(props.item)
+    .filter(([key]) => key !== 'name' && key !== 'id')
+    .map((data, idx) => {
+      const [key, value] = data;
       return (
         <li key={idx} className="list-group-item">
           <span className="term">
@@ -24,8 +25,7 @@ const ItemDetails = (props) => {
           <span>{value}</span>
         </li>
       );
-    }
-  });
+    });
 
   return (
     <div className="item-details card">
