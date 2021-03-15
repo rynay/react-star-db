@@ -1,4 +1,3 @@
-import Spinner from '../spinner';
 import './item-details.css';
 import { withImage } from '../hoc';
 
@@ -19,8 +18,7 @@ const ItemDetails = (props) => {
             {key
               .split('_')
               .map((word) => toCapitalize(word))
-              .join(' ')}{' '}
-            :{' '}
+              .join(' ')}
           </span>
           <span>{value}</span>
         </li>
@@ -30,7 +28,7 @@ const ItemDetails = (props) => {
   return (
     <div className="item-details card">
       <div className="item-image">
-        {!props.isLoaded ? <Spinner /> : <img alt="item" src={props.path} />}
+        <img alt="" src={props.path} />
       </div>
       <div className="card-body">
         <h4>{name}</h4>

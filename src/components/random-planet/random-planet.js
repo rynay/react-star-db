@@ -19,7 +19,7 @@ const RandomPlanet = (props) => {
       swapiService.getItem(randomPlanetNumber, props.category).then((item) => {
         setPlanet(item);
       });
-    }, 3500);
+    }, 5000);
 
     return () => {
       clearInterval(interval);
