@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Spinner from '../spinner';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
-import Row from '../row'
+import Row from '../row';
 import SwapiService from '../../services/swapi-service';
 
 import './app.css';
 
 const App = () => {
-  const [ isPersonLoaded, setIsPersonLoaded ] = useState(true); 
-  const [ isPlanetLoaded, setIsPlanetLoaded ] = useState(true); 
-  const [ isStarshipLoaded, setIsStarshipLoaded ] = useState(true); 
-  const [ person, setPerson ] = useState();
-  const [ planet, setPlanet ] = useState();
-  const [ starship, setStarship ] = useState();
+  const [isPersonLoaded, setIsPersonLoaded] = useState(true);
+  const [isPlanetLoaded, setIsPlanetLoaded] = useState(true);
+  const [isStarshipLoaded, setIsStarshipLoaded] = useState(true);
+  const [person, setPerson] = useState();
+  const [planet, setPlanet] = useState();
+  const [starship, setStarship] = useState();
 
   const swapiService = new SwapiService();
 
   const getItem = (id, category) => {
-    switch(category){
+    switch (category) {
       case 'people':
         setIsPersonLoaded(false);
         break;
@@ -34,9 +34,8 @@ const App = () => {
       default:
         break;
     }
-    swapiService.getItem(id, category)
-    .then(data => {
-      switch(category){
+    swapiService.getItem(id, category).then((data) => {
+      switch (category) {
         case 'people':
           changeStates(data, setPerson, setIsPersonLoaded);
           break;
@@ -46,32 +45,50 @@ const App = () => {
         case 'starships':
           changeStates(data, setStarship, setIsStarshipLoaded);
           break;
-        default: 
+        default:
           break;
       }
-    })
-  }
+    });
+  };
   const changeStates = (data, func, loaded) => {
-    func({...data})
+    func({ ...data });
     loaded(true);
-  }
+  };
 
   return (
     <div className="container">
       <Header />
-      <RandomPlanet category="planets"/>
+      <RandomPlanet category="planets" />
 
-      <Row 
-        left={<ItemList category="people" handleClick={getItem}/>}
-        right={!isPersonLoaded ? <Spinner /> : <ItemDetails category="people" item={person}/>}
+      <Row
+        left={<ItemList category="people" handleClick={getItem} />}
+        right={
+          !isPersonLoaded ? (
+            <Spinner />
+          ) : (
+            <ItemDetails category="people" item={person} />
+          )
+        }
       />
       <Row
-        left={<ItemList category="planets" handleClick={getItem}/>}
-        right={!isPlanetLoaded ? <Spinner /> : <ItemDetails category="planets" item={planet}/>}
+        left={<ItemList category="planets" handleClick={getItem} />}
+        right={
+          !isPlanetLoaded ? (
+            <Spinner />
+          ) : (
+            <ItemDetails category="planets" item={planet} />
+          )
+        }
       />
-      <Row 
-        left={<ItemList category="starships" handleClick={getItem}/>}
-        right={!isStarshipLoaded ? <Spinner /> : <ItemDetails category="starships" item={starship}/>}
+      <Row
+        left={<ItemList category="starships" handleClick={getItem} />}
+        right={
+          !isStarshipLoaded ? (
+            <Spinner />
+          ) : (
+            <ItemDetails category="starships" item={starship} />
+          )
+        }
       />
     </div>
   );
