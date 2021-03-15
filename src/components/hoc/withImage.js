@@ -5,9 +5,8 @@ export const withImage = (WrappedComponent) => (props) => {
   const [path, setPath] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const swapiService = new SwapiService();
-
   useEffect(() => {
+    const swapiService = new SwapiService();
     setIsLoaded(false);
     swapiService.getImage(props.item?.id, props.category).then((path) => {
       setPath(path);
@@ -18,7 +17,7 @@ export const withImage = (WrappedComponent) => (props) => {
       setPath(null);
       setIsLoaded(false);
     };
-  }, [props.item?.id]);
+  }, [props.category, props.item?.id]);
 
   return <WrappedComponent path={path} isLoaded={isLoaded} {...props} />;
 };
