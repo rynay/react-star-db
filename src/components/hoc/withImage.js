@@ -1,7 +1,6 @@
 import React from 'react';
 import SwapiService from '../../services/swapi-service';
 
-
 export function withImage(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
@@ -14,18 +13,25 @@ export function withImage(WrappedComponent) {
     }
 
     componentDidMount() {
-      this.setState({ isLoaded: false })
-      this.state.swapiService.getImage(this.props.item?.id, this.props.category)
+      this.setState({ isLoaded: false });
+      this.state.swapiService
+        .getImage(this.props.item?.id, this.props.category)
         .then((path) => {
-          this.setState({ path: path, isLoaded: true})
-        })
+          this.setState({ path: path, isLoaded: true });
+        });
     }
-    componentWillUnmount(){
-      this.setState({ path: null, isLoaded: false })
+    componentWillUnmount() {
+      this.setState({ path: null, isLoaded: false });
     }
 
     render() {
-      return <WrappedComponent path={this.state.path} isLoaded={this.state.isLoaded} {...this.props} />;
+      return (
+        <WrappedComponent
+          path={this.state.path}
+          isLoaded={this.state.isLoaded}
+          {...this.props}
+        />
+      );
     }
   };
 }
