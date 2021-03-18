@@ -11,10 +11,10 @@ const Header = () => {
       </h3>
       <ul className="d-flex">
         <li>
-          <NavLink to="/people/">People</NavLink>
+          <NavLink to="/people">People</NavLink>
         </li>
         <li>
-          <NavLink to="/planets/">Planets</NavLink>
+          <NavLink to="/planets">Planets</NavLink>
         </li>
         <li>
           <NavLink to="/starships/">Starships</NavLink>

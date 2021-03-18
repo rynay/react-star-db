@@ -65,11 +65,13 @@ const App = () => {
         <Switch>
           <Route path="/people/:id?">
             <Row
-              left={<ItemList category="people" handleClick={getItem} />}
+              left={
+                  <ItemList category="people" handleClick={getItem} />
+              }
               right={
-                !isPersonLoaded ? <Spinner /> : (
-                  <ItemDetails category="people" item={person} />
-                )
+                  !isPersonLoaded ? <Spinner /> : (
+                    <ItemDetails category="people" item={person} />
+                  )
               }
             />
           </Route>
@@ -78,9 +80,9 @@ const App = () => {
             <Row
               left={<ItemList category="planets" handleClick={getItem} />}
               right={
-                !isPlanetLoaded ? <Spinner /> : (
-                  <ItemDetails category="planets" item={planet} />
-                )
+                  !isPlanetLoaded ? <Spinner /> : (
+                    <ItemDetails category="planets" item={planet} />
+                  )
               }
             />
           </Route>
