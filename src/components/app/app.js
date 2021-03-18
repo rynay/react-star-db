@@ -63,7 +63,7 @@ const App = () => {
       <RandomPlanet category="planets" />
 
         <Switch>
-          <Route path="/people/">
+          <Route path="/people/:id?">
             <Row
               left={<ItemList category="people" handleClick={getItem} />}
               right={
@@ -74,7 +74,7 @@ const App = () => {
             />
           </Route>
 
-          <Route path="/planets/">
+          <Route path="/planets/:id?">
             <Row
               left={<ItemList category="planets" handleClick={getItem} />}
               right={
