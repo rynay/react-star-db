@@ -10,7 +10,7 @@ export const withData = (WrappedComponent) => (props) => {
 
   useEffect(() => {
     props.changeItemId(null);
-  }, [props.category])
+  }, [props])
   
   useEffect(() => {
     setIsLoaded(false);
@@ -19,7 +19,7 @@ export const withData = (WrappedComponent) => (props) => {
       setItem(data);
       setIsLoaded(true);
     });
-  }, [props.category, props.itemId, match.params.id]);
+  }, [props, match.params.id]);
 
   return (
     isLoaded ? <WrappedComponent item={item} {...props} /> : <Spinner />
