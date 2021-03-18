@@ -15,7 +15,7 @@ export const withData = (WrappedComponent) => (props) => {
   useEffect(() => {
     setIsLoaded(false);
     const swapiService = new SwapiService();
-    swapiService.getItem(match.params.id ? props.itemId : 5, props.category).then((data) => {
+    swapiService.getItem(match.params.id || props.itemId || 5, props.category).then((data) => {
       setItem(data);
       setIsLoaded(true);
     });
