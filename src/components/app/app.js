@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import Spinner from '../spinner';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
