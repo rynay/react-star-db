@@ -11,7 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import './app.css';
 
 const App = () => {
-  const [ itemId, setItemId ] = useState(1);
+  const [ itemId, setItemId ] = useState(5);
 
   const changeItemId = (id) => {
     setItemId(id);
@@ -25,9 +25,7 @@ const App = () => {
         <Switch>
           <Route path="/people/:id?">
             <Row
-              left={
-                  <ItemList category="people" handleClick={changeItemId} />
-              }
+              left={<ItemList category="people" handleClick={changeItemId} />}
               right={<ItemDetails category="people" itemId={itemId} />}
             />
           </Route>
