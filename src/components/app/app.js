@@ -7,6 +7,7 @@ import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import SwapiService from '../../services/swapi-service';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './app.css';
 
@@ -60,36 +61,42 @@ const App = () => {
       <Header />
       <RandomPlanet category="planets" />
 
-      <Row
-        left={<ItemList category="people" handleClick={getItem} />}
-        right={
-          !isPersonLoaded ? (
-            <Spinner />
-          ) : (
-            <ItemDetails category="people" item={person} />
-          )
-        }
-      />
-      <Row
-        left={<ItemList category="planets" handleClick={getItem} />}
-        right={
-          !isPlanetLoaded ? (
-            <Spinner />
-          ) : (
-            <ItemDetails category="planets" item={planet} />
-          )
-        }
-      />
-      <Row
-        left={<ItemList category="starships" handleClick={getItem} />}
-        right={
-          !isStarshipLoaded ? (
-            <Spinner />
-          ) : (
-            <ItemDetails category="starships" item={starship} />
-          )
-        }
-      />
+      <Router>
+        <Switch>
+          <Route path="/people/">
+            <Row
+              left={<ItemList category="people" handleClick={getItem} />}
+              right={
+                !isPersonLoaded ? <Spinner /> : (
+                  <ItemDetails category="people" item={person} />
+                )
+              }
+            />
+          </Route>
+
+          <Route path="/planets/">
+            <Row
+              left={<ItemList category="planets" handleClick={getItem} />}
+              right={
+                !isPlanetLoaded ? <Spinner /> : (
+                  <ItemDetails category="planets" item={planet} />
+                )
+              }
+            />
+          </Route>
+
+          <Route path="/starships/">
+            <Row
+              left={<ItemList category="starships" handleClick={getItem} />}
+              right={
+                !isStarshipLoaded ? <Spinner /> : (
+                  <ItemDetails category="starships" item={starship} />
+                )
+              }
+            />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
