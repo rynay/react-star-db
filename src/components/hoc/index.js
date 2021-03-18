@@ -1,3 +1,4 @@
 import { withImage } from './withImage'
+import { withData } from './withData'
 
-export { withImage }
+export { withImage, withData }

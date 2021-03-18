@@ -1,5 +1,5 @@
 import './item-details.css';
-import { withImage } from '../hoc';
+import { withImage, withData } from '../hoc';
 
 const ItemDetails = (props) => {
   if (!props.item) {
@@ -31,11 +31,11 @@ const ItemDetails = (props) => {
         <img alt="" src={props.path} />
       </div>
       <div className="card-body">
-        <h4>{name}</h4>
+        <h4>{ name }</h4>
         <ul className="list-group list-group-flush">{records}</ul>
       </div>
     </div>
   );
 };
 
-export default withImage(ItemDetails);
+export default withData(withImage(ItemDetails));
