@@ -26,21 +26,21 @@ const App = () => {
           <Route path="/people/:id?">
             <Row
               left={<ItemList category="people" handleClick={changeItemId} />}
-              right={<ItemDetails category="people" itemId={itemId} />}
+              right={<ItemDetails category="people" changeItemId={changeItemId} itemId={itemId} />}
             />
           </Route>
 
           <Route path="/planets/:id?">
             <Row
               left={<ItemList category="planets" handleClick={changeItemId} />}
-              right={<ItemDetails category="planets" itemId={itemId} />}
+              right={<ItemDetails category="planets" changeItemId={changeItemId} itemId={itemId} />}
             />
           </Route>
 
           <Route path="/starships/:id?">
             <Row
               left={<ItemList category="starships" handleClick={changeItemId} />}
-              right={<ItemDetails category="starships" itemId={itemId} />}
+              right={<ItemDetails category="starships" changeItemId={changeItemId} itemId={itemId} />}
             />
           </Route>
         </Switch>

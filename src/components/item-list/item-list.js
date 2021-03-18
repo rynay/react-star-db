@@ -2,13 +2,11 @@ import { useState, useEffect } from 'react';
 import Spinner from '../spinner';
 import './item-list.css';
 import SwapiService from '../../services/swapi-service';
-import { useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const ItemList = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  const match = useRouteMatch();
 
   useEffect(() => {
     setIsLoaded(false);
