@@ -11,6 +11,7 @@ const ItemList = (props) => {
   const match = useRouteMatch();
 
   useEffect(() => {
+    setIsLoaded(false);
     const swapiService = new SwapiService();
     swapiService.getAll(props.category).then((data) => {
       setItems(data);
