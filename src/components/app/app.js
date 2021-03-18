@@ -58,10 +58,10 @@ const App = () => {
 
   return (
     <div className="container">
+      <Router>
       <Header />
       <RandomPlanet category="planets" />
 
-      <Router>
         <Switch>
           <Route path="/people/">
             <Row
