@@ -1,0 +1,16 @@
+#random-item {
+  height: 19rem;
+  display: flex;
+  padding: 0;
+}
+#random-item .item-image {
+  height: 17rem;
+  width: 17rem;
+}
+#random-item .item-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.card {
+  border: 0;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Header from '../header';
-import RandomPlanet from '../random-planet';
+import RandomItem from '../random-item';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <RandomPlanet category="planets" />
+      <RandomItem category="people" />
 
       <Switch>
         <Route path="/people/:id?">
