@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      {/* <RandomPlanet category="planets" /> */}
+      <RandomPlanet category="planets" />
 
       <Switch>
         <Route path="/people/:id?">
