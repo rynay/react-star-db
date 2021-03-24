@@ -18,6 +18,7 @@ const RandomPlanet = (props) => {
   return (
     <div id="random-planet" className="random-planet jumbotron rounded card">
       <ItemDetails
+        hideSpinner
         category="planets"
         itemId={randomPlanetNumber}
         changeItemId={() => {}}
