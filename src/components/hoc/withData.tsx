@@ -1,4 +1,4 @@
-import React, { ComponentType, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner'
@@ -11,9 +11,9 @@ type Props = {
 }
 
 export const withData =
-  (WrappedComponent: ComponentType<Props & { item: TItem | null }>) =>
+  (WrappedComponent: (props: Props & { item?: TItem }) => JSX.Element) =>
   (props: Props) => {
-    const [item, setItem] = useState(null)
+    const [item, setItem] = useState<TItem>()
     const [isLoaded, setIsLoaded] = useState(true)
     const match: {
       params: {

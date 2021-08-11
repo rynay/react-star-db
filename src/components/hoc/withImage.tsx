@@ -1,21 +1,13 @@
-import React, { ComponentType, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SwapiService from '../../services/swapi-service'
 
 type Props = {
-  item?: {
-    id: string
-  }
+  item?: TItem
   category: string
 }
 
 export const withImage =
-  (
-    WrappedComponent: ComponentType<
-      Props & {
-        path?: string
-      }
-    >
-  ) =>
+  (WrappedComponent: (props: Props & { path?: string }) => JSX.Element) =>
   (props: Props) => {
     const [path, setPath] = useState<string>()
 
