@@ -5,6 +5,7 @@ import ItemList from './item-list'
 
 type Props = {
   category: string
+  handleClick: (id: number) => void
 }
 
 const ItemListContainer = (props: Props) => {

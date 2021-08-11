@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import Header from '../header';
-import RandomItem from '../random-item';
-import ItemList from '../item-list';
-import ItemDetails from '../item-details';
-import Row from '../row';
-import { Switch, Route } from 'react-router-dom';
+import Header from '../header'
+import RandomItem from '../random-item'
+import ItemList from '../item-list'
+import ItemDetails from '../item-details'
+import Row from '../row'
+import { Switch, Route } from 'react-router-dom'
 
-import './app.css';
+import './app.css'
 
 const App = () => {
-  const [itemId, setItemId] = useState(5);
+  const [itemId, setItemId] = useState<number | null>(5)
 
-  const changeItemId = (id) => {
-    setItemId(id);
-  };
+  const changeItemId = (id: number | null) => {
+    setItemId(id)
+  }
 
   return (
     <div className="container">
@@ -62,7 +62,7 @@ const App = () => {
         </Route>
       </Switch>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

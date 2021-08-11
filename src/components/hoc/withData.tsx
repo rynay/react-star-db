@@ -4,9 +4,9 @@ import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner'
 
 type Props = {
-  changeItemId: (id: string | null) => void
-  hideSpinner: boolean
-  itemId: TItem['id']
+  hideSpinner?: boolean
+  itemId: TItem['id'] | null
+  changeItemId: (id: Props['itemId']) => void
   category: string
 }
 
