@@ -5,7 +5,7 @@ import Spinner from '../spinner'
 
 type Props = {
   changeItemId: (id: string | null) => void
-  hideSpinner: () => void
+  hideSpinner: boolean
   itemId: TItem['id']
   category: string
 }
