@@ -1,5 +1,5 @@
 import './random-item.css'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ItemDetails from '../item-details'
 
 type Props = {

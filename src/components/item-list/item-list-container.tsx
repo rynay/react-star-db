@@ -1,16 +1,16 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import SwapiService from '../../services/swapi-service'
 import ItemList from './item-list'
 
 type Props = {
   category: string
-  handleClick: (id: number) => void
+  handleClick: (id: number | undefined, category: string) => void
 }
 
 const ItemListContainer = (props: Props) => {
   const [isLoaded, setIsLoaded] = useState(false)
-  const [items, setItems] = useState<TItem[]>()
+  const [items, setItems] =
+    useState<(TPerson | TPlanet | TStarship | undefined)[]>()
 
   useEffect(() => {
     setIsLoaded(false)

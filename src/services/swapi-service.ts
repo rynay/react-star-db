@@ -21,11 +21,13 @@ export default class SwapiService {
   }
 
   getItem = async (id: TItem['id'], category: string) => {
-    const item = await this.getResource(`/${category}/${id}/`)
+    const item: TPerson | TPlanet | TStarship = await this.getResource(
+      `/${category}/${id}/`
+    )
     return this._transform(item, category)
   }
 
-  getImage = async (id: TItem['id'], category: string) => {
+  getImage = async (id: TItem['id'] | undefined, category: string) => {
     if (!id || !category) {
       return 'https://grist.org/wp-content/uploads/2012/10/question-mark-earth-470.jpg'
     }
@@ -52,7 +54,7 @@ export default class SwapiService {
           eye_color: item.eye_color,
           birth_year: item.birth_year,
           id: item.url.match(/\/([0-9]+)\/$/)![1],
-        }
+        } as unknown as TPerson
       case 'planets':
         if (!(item.category === 'planets')) return
         return {
@@ -61,7 +63,7 @@ export default class SwapiService {
           rotation_period: item.rotation_period,
           diameter: item.diameter,
           id: item.url.match(/\/([0-9]+)\/$/)![1],
-        }
+        } as unknown as TPlanet
       case 'starships':
         if (!(item.category === 'starships')) return
         return {
@@ -70,7 +72,7 @@ export default class SwapiService {
           max_atmosphering_speed: item.max_atmosphering_speed,
           passengers: item.passengers,
           id: item.url.match(/\/([0-9]+)\/$/)![1],
-        }
+        } as unknown as TStarship
       default:
         return item
     }

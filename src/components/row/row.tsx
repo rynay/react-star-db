@@ -1,5 +1,5 @@
 import ErrorBoundary from '../error-boundary'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 type Props = {
   left: ReactElement

@@ -1,4 +1,3 @@
-import React from 'react'
 import './item-details.css'
 import { withImage, withData } from '../hoc'
 

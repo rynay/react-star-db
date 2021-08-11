@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner'
@@ -13,7 +13,7 @@ type Props = {
 export const withData =
   (WrappedComponent: (props: Props & { item?: TItem }) => JSX.Element) =>
   (props: Props) => {
-    const [item, setItem] = useState<TItem>()
+    const [item, setItem] = useState<TPerson | TPlanet | TStarship>()
     const [isLoaded, setIsLoaded] = useState(true)
     const match: {
       params: {
@@ -29,9 +29,11 @@ export const withData =
       props.hideSpinner || setIsLoaded(false)
       const swapiService = new SwapiService()
       swapiService
-        .getItem(match.params.id || props.itemId || 5, props.category)
+        .getItem(+match.params.id || props.itemId || 5, props.category)
         .then((data) => {
-          setItem(data)
+          if (data) {
+            setItem(data)
+          }
           props.hideSpinner || setIsLoaded(true)
         })
     }, [props, match.params.id])
