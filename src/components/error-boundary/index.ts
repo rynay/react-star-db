@@ -1,3 +1,1 @@
-import ErrorBoundary from './error-boundary'
-
-export default ErrorBoundary
+export { default } from './error-boundary'

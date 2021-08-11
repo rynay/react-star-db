@@ -1,0 +1,3 @@
+type TItem = {
+  id: string
+}
